@@ -1,0 +1,82 @@
+# Telegram Minigame
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Minigame</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+        #game {
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #333;
+            background-color: #fff;
+            width: 300px;
+            border-radius: 10px;
+        }
+        #scoreboard {
+            margin-top: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game">
+    <h1>Minigame</h1>
+    <p>Score: <span id="score">0</span></p>
+    <button class="button" id="mineButton">Mine</button>
+    <button class="button" id="leaderboardButton">View Leaderboard</button>
+</div>
+
+<div id="scoreboard">
+    <h2>Leaderboard</h2>
+    <ul id="leaderboardList"></ul>
+</div>
+
+<script>
+    let score = 0;
+    const scoreDisplay = document.getElementById('score');
+    const leaderboardList = document.getElementById('leaderboardList');
+
+    document.getElementById('mineButton').addEventListener('click', function() {
+        score++;
+        scoreDisplay.textContent = score;
+        updateLeaderboard();
+    });
+
+    function updateLeaderboard() {
+        leaderboardList.innerHTML = '';
+        const scores = [score]; // Example scores, replace with actual data
+        scores.sort((a, b) => b - a);
+        scores.forEach((s, index) => {
+            const li = document.createElement('li');
+            li.textContent = `Player ${index + 1}: ${s}`;
+            leaderboardList.appendChild(li);
+        });
+    }
+
+    document.getElementById('leaderboardButton').addEventListener('click', function() {
+        alert('Leaderboard functionality coming soon!');
+    });
+</script>
+
+</body>
+</html>
